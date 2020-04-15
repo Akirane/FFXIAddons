@@ -31,12 +31,13 @@ local action_manager = {}
 local CUSTOM_TYPE = 'ct'
 
 -- build action
-function action_manager:build(type, action, target, alias, icon)
+function action_manager:build(type, action, target, alias, icon, next_environment)
     local new_action = {}
 
     new_action.type = type
     new_action.action = action
     new_action.target = target
+    new_action.next_environment = next_environment
 
     if alias == nil then alias = action end
     new_action.alias = alias
@@ -49,8 +50,8 @@ function action_manager:build(type, action, target, alias, icon)
 end
 
 -- build a custom action
-function action_manager:build_custom(action, alias, icon)
-    return self:build(CUSTOM_TYPE, action, nil, alias, icon)
+function action_manager:build_custom(action, alias, icon, next_environment)
+    return self:build(CUSTOM_TYPE, action, nil, alias, icon, next_environment)
 end
 
 return action_manager

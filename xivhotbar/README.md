@@ -30,6 +30,18 @@ This is a very simple version with a lot of features still missing and A LOT of 
     - added PSDs for custom icons to repository
  07/05/17
     - released WIP version
+14/03/20
+    - added the ability to send commands to windower
+21/03/20
+    - implemented mouse functionality
+21/03/20
+    - added AutoBattleEnvironment setting to toggle battle switch
+30/03/20
+    - you can now specify the hotbar page to switch to
+10/04/20
+    - added the fourth row asigned to alt
+12/04/20
+    - added keyboard bindings (removed unreliable ctrl and shift tracking)
  ```
 
 ##### Limitations:
@@ -66,7 +78,7 @@ This is a very simple version with a lot of features still missing and A LOT of 
 3. Add the following line to the end of the file ``` lua l xivhotbar ```
 
 ## Controls:
-1. Hotbars are controlled with 1-0, SHIFT+1-0 and CTRL+1-0
+1. Hotbars are controlled with 1-0, SHIFT+1-0, CTRL+1-0 and ALT+1-0
 2. You can toggle between battle mode using backslash \ (customizable through ToggleBattleMode setting)
 
 ## Addon Commands:
@@ -75,11 +87,11 @@ To use these commands:
 2. Press insert to access the windower console
 3. Type ``` xivhotbar ``` or ```htb``` along with the command you want to execute
 
-**Note:** ```<mode>``` designates which hotbar mode you want to edit. Either "battle" (b) or "field" (f) 
+**Note:** ```<mode>``` designates which hotbar mode you want to edit. Usually "battle" (b) or "field" (f) 
 
 ------
 ### Set action in hotbar 
- - ```htb set <mode> <hotbar> <slot> <type> <action> <target (optional)> <alias (optional)> <icon (optional)>```
+ - ```htb set <mode> <hotbar> <slot> <type> <action> <target (optional)> <alias (optional)> <icon (optional)> <next_environment (optional)>```
  
 Examples:
  - Set Cure II on hotbar 1, slot 1 for battle mode: ```htb set battle 1 1 ma "Cure II" stpc```
@@ -113,10 +125,16 @@ Example:
 - Change alias from field hotbar 1, slot 2 to "Kupo": ```htb al f 1 2 "Kupo"```
 ------
 ### Change action icon 
-- ```htb icon <mode> <hotbar> <slot> <new alias>```
+- ```htb icon <mode> <hotbar> <slot> <new icon>```
 
 Example: 
 - Change icon from battle hotbar 1, slot 1 to "blue/blue-cocoon": ```htb ic b 1 1 "blue/blue-cocoon"```
+------
+### Change action next_environment 
+- ```htb next_environment <mode> <hotbar> <slot> <new next_environment>```
+
+Example: 
+- Change next_environment from field hotbar 1, slot 2 to "Kupo": ```htb ne f 1 2 "Kupo"```
 ------
 ### Reload hotbar to apply manual changes to the hotbar XML file
 - ```htb reload```
@@ -142,11 +160,13 @@ In addition to windower commands, the hotbar can be changed by editing the hotba
          </hotbar_1>
          <hotbar_2></hotbar_2>
          <hotbar_3></hotbar_3>
+         <hotbar_4></hotbar_4>
      </field>
      <battle>
           <hotbar_1></hotbar_1>
           <hotbar_2></hotbar_2>
           <hotbar_3></hotbar_3>
+          <hotbar_4></hotbar_4>
       </battle>
  <hotbar>
  ```
@@ -155,6 +175,7 @@ In addition to windower commands, the hotbar can be changed by editing the hotba
 ##### < type >
 type of action:
 * ct - custom command for things like /attack, /check, emotes, etc.
+* wc - windower command for things like //trusts <trust_set>, etc.
 * ma - magic
 * ja - job ability
 * ws - weaponskill
@@ -167,6 +188,8 @@ command or magic/ability/item to use
 (optional) alias for the text that appears under each slot
 ##### < icon >
 (optional) custom icon name. The file must be available under **_Windower4\addons\xivhotbar\data\images\icons\custom\_**
+##### < next_environment >
+(optional) next_environment for the hotbar environment to switch to after the action
 
 #### Examples:
 * Check current target:
@@ -236,6 +259,15 @@ command or magic/ability/item to use
     <action>Chain Affinity</action>
     <alias>Chain Aff</alias>
 </slot_2>
+```
+
+* Windower Command
+```
+<slot_8>
+    <type>wc</type>
+    <action>trusts trust_set</action>
+    <alias>Trusts</alias>
+</slot_9>
 ```
 
 ## Available Settings

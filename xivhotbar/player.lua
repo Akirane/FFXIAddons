@@ -95,7 +95,6 @@ function player:load_from_file()
 
     -- parse xml to hotbar
     for key, environment in ipairs(contents.children) do
-        if environment.name == 'field' or environment.name == 'battle' then
             for key, hotbar in ipairs(environment.children) do     -- hotbar number
                 for key, slot in ipairs(hotbar.children) do       -- slot number
                     local new_action = {}
@@ -116,18 +115,19 @@ function player:load_from_file()
                             new_action.alias = action.children[1].value
                         elseif action.name == 'icon' then
                             new_action.icon = action.children[1].value
+                        elseif action.name == 'next_environment' then
+                            new_action.next_environment = action.children[1].value
                         end
                     end
 
                     self:add_action(
-                        action_manager:build(new_action.type, new_action.action, new_action.target, new_action.alias, new_action.icon),
+                        action_manager:build(new_action.type, new_action.action, new_action.target, new_action.alias, new_action.icon, new_action.next_environment),
                         environment.name,
                         hotbar.name:gsub('hotbar_', ''),
                         slot.name:gsub('slot_', '')
                     )
                 end
             end
-        end
     end
 end
 
@@ -141,8 +141,8 @@ function player:create_default_hotbar()
     self:add_action(action_manager:build_custom('returntrust all', 'No Trusts', 'return-trust'), 'field', 1, 9)
     self:add_action(action_manager:build_custom('heal', 'Heal', 'heal'), 'field', 1, 0)
 
-    self:add_action(action_manager:build_custom('check', 'Check', 'check'), 'battle', 1, 9)
-    self:add_action(action_manager:build_custom('attack off', 'Disengage', 'disengage'), 'battle', 1, 0)
+    self:add_action(action_manager:build_custom('check', 'Check', 'check'), 'battle', 1, 2)
+    self:add_action(action_manager:build_custom('attack off', 'Disengage', 'disengage'), 'battle', 1, 1)
 
     local new_hotbar = {}
     new_hotbar.hotbar = self.hotbar
@@ -150,28 +150,25 @@ function player:create_default_hotbar()
     storage:store_new_hotbar(new_hotbar)
 end
 
--- reset player hotbar
-function player:reset_hotbar()
-    self.hotbar = {
-        ['battle'] = {},
-        ['field'] = {}
-    }
+function player:add_hotbar(env)
+    self.hotbar[env] = {}
 
     for h=1,self.hotbar_settings.max,1 do
-        self.hotbar.field['hotbar_' .. h] = {}
-        self.hotbar.battle['hotbar_' .. h] = {}
+        self.hotbar[env]['hotbar_' .. h] = {}
     end
+end
 
+-- reset player hotbar
+function player:reset_hotbar()
+    self:add_hotbar('field')
+    self:add_hotbar('battle')
+    
     self.hotbar_settings.active_hotbar = 1
 end
 
 -- toggle bar environment
-function player:toggle_environment()
-    if self.hotbar_settings.active_environment == 'battle' then
-        self.hotbar_settings.active_environment = 'field'
-    else
-        self.hotbar_settings.active_environment = 'battle'
-    end
+function player:set_environment(env)
+    self.hotbar_settings.active_environment = env
 end
 
 -- set bar environment to battle
@@ -197,8 +194,7 @@ function player:add_action(action, environment, hotbar, slot)
     if slot == 10 then slot = 0 end
 
     if self.hotbar[environment] == nil then
-        windower.console.write('XIVHOTBAR: invalid hotbar (environment)')
-        return
+        self:add_hotbar(environment)
     end
 
     if self.hotbar[environment]['hotbar_' .. hotbar] == nil then
@@ -227,10 +223,29 @@ function player:execute_action(slot)
         end
 
         windower.chat.input(command)
+
+        if action.next_environment ~= nil then
+            set_environment(action.next_environment)
+        end
+
+        return
+    elseif action.type == 'wc' then
+        local command = action.action
+
+        windower.send_command(command)
+
+        if action.next_environment ~= nil then
+            set_environment(action.next_environment)
+        end
+
         return
     end
 
     windower.chat.input('/' .. action.type .. ' "' .. action.action .. '" <' .. action.target .. '>')
+
+    if action.next_environment ~= nil then
+        set_environment(action.next_environment)
+    end
 end
 
 -- remove action from slot
@@ -281,6 +296,18 @@ function player:set_action_icon(environment, hotbar, slot, icon)
     if self.hotbar[environment]['hotbar_' .. hotbar]['slot_' .. slot] == nil then return end
 
     self.hotbar[environment]['hotbar_' .. hotbar]['slot_' .. slot].icon = icon
+end
+
+-- update action next_environment
+function player:set_action_next_environment(environment, hotbar, slot, next_environment)
+    if environment == 'b' then environment = 'battle' elseif environment == 'f' then environment = 'field' end
+    if slot == 10 then slot = 0 end
+
+    if self.hotbar[environment] == nil then return end
+    if self.hotbar[environment]['hotbar_' .. hotbar] == nil then return end
+    if self.hotbar[environment]['hotbar_' .. hotbar]['slot_' .. slot] == nil then return end
+
+    self.hotbar[environment]['hotbar_' .. hotbar]['slot_' .. slot].next_environment = next_environment
 end
 
 -- save current hotbar

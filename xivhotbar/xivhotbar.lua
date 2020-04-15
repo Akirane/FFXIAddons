@@ -28,8 +28,8 @@
 
 -- Addon description
 _addon.name = 'XIV Hotbar'
-_addon.author = 'Edeon'
-_addon.version = '0.1'
+_addon.author = 'Edeon, Maverickdfz'
+_addon.version = '0.4'
 _addon.language = 'english'
 _addon.commands = {'xivhotbar', 'htb'}
 
@@ -41,6 +41,110 @@ images = require('images')
 tables = require('tables')
 resources = require('resources')
 xml = require('libs/xml2')   -- TODO: REMOVE
+
+windower.register_event('load',function()
+    windower.send_command('bind %1 htb execute 1 1;')-- 1
+    windower.send_command('bind ~%1 htb execute 2 1;')-- Shift+1
+    windower.send_command('bind ^%1 htb execute 3 1;')-- Ctrl+1
+    windower.send_command('bind !%1 htb execute 4 1;')-- Alt+1
+
+    windower.send_command('bind %2 htb execute 1 2;')-- 1
+    windower.send_command('bind ~%2 htb execute 2 2;')-- Shift+1
+    windower.send_command('bind ^%2 htb execute 3 2;')-- Ctrl+1
+    windower.send_command('bind !%2 htb execute 4 2;')-- Alt+1
+
+    windower.send_command('bind %3 htb execute 1 3;')-- 1
+    windower.send_command('bind ~%3 htb execute 2 3;')-- Shift+1
+    windower.send_command('bind ^%3 htb execute 3 3;')-- Ctrl+1
+    windower.send_command('bind !%3 htb execute 4 3;')-- Alt+1
+
+    windower.send_command('bind %4 htb execute 1 4;')-- 1
+    windower.send_command('bind ~%4 htb execute 2 4;')-- Shift+1
+    windower.send_command('bind ^%4 htb execute 3 4;')-- Ctrl+1
+    windower.send_command('bind !%4 htb execute 4 4;')-- Alt+1
+
+    windower.send_command('bind %5 htb execute 1 5;')-- 1
+    windower.send_command('bind ~%5 htb execute 2 5;')-- Shift+1
+    windower.send_command('bind ^%5 htb execute 3 5;')-- Ctrl+1
+    windower.send_command('bind !%5 htb execute 4 5;')-- Alt+1
+
+    windower.send_command('bind %6 htb execute 1 6;')-- 1
+    windower.send_command('bind ~%6 htb execute 2 6;')-- Shift+1
+    windower.send_command('bind ^%6 htb execute 3 6;')-- Ctrl+1
+    windower.send_command('bind !%6 htb execute 4 6;')-- Alt+1
+
+    windower.send_command('bind %7 htb execute 1 7;')-- 1
+    windower.send_command('bind ~%7 htb execute 2 7;')-- Shift+1
+    windower.send_command('bind ^%7 htb execute 3 7;')-- Ctrl+1
+    windower.send_command('bind !%7 htb execute 4 7;')-- Alt+1
+
+    windower.send_command('bind %8 htb execute 1 8;')-- 1
+    windower.send_command('bind ~%8 htb execute 2 8;')-- Shift+1
+    windower.send_command('bind ^%8 htb execute 3 8;')-- Ctrl+1
+    windower.send_command('bind !%8 htb execute 4 8;')-- Alt+1
+
+    windower.send_command('bind %9 htb execute 1 9;')-- 1
+    windower.send_command('bind ~%9 htb execute 2 9;')-- Shift+1
+    windower.send_command('bind ^%9 htb execute 3 9;')-- Ctrl+1
+    windower.send_command('bind !%9 htb execute 4 9;')-- Alt+1
+
+    windower.send_command('bind %0 htb execute 1 0;')-- 1
+    windower.send_command('bind ~%0 htb execute 2 0;')-- Shift+1
+    windower.send_command('bind ^%0 htb execute 3 0;')-- Ctrl+1
+    windower.send_command('bind !%0 htb execute 4 0;')-- Alt+1
+end)
+
+windower.register_event('unload',function ()
+    windower.send_command('unbind %1;')-- 1
+    windower.send_command('unbind ~%1;')-- Shift+1
+    windower.send_command('unbind ^%1;')-- Ctrl+1
+    windower.send_command('unbind !%1;')-- Alt+1
+
+    windower.send_command('unbind %2;')-- 1
+    windower.send_command('unbind ~%2;')-- Shift+1
+    windower.send_command('unbind ^%2;')-- Ctrl+1
+    windower.send_command('unbind !%2;')-- Alt+1
+
+    windower.send_command('unbind %3;')-- 1
+    windower.send_command('unbind ~%3;')-- Shift+1
+    windower.send_command('unbind ^%3;')-- Ctrl+1
+    windower.send_command('unbind !%3;')-- Alt+1
+
+    windower.send_command('unbind %4;')-- 1
+    windower.send_command('unbind ~%4;')-- Shift+1
+    windower.send_command('unbind ^%4;')-- Ctrl+1
+    windower.send_command('unbind !%4;')-- Alt+1
+
+    windower.send_command('unbind %5;')-- 1
+    windower.send_command('unbind ~%5;')-- Shift+1
+    windower.send_command('unbind ^%5;')-- Ctrl+1
+    windower.send_command('unbind !%5;')-- Alt+1
+
+    windower.send_command('unbind %6;')-- 1
+    windower.send_command('unbind ~%6;')-- Shift+1
+    windower.send_command('unbind ^%6;')-- Ctrl+1
+    windower.send_command('unbind !%6;')-- Alt+1
+
+    windower.send_command('unbind %7;')-- 1
+    windower.send_command('unbind ~%7;')-- Shift+1
+    windower.send_command('unbind ^%7;')-- Ctrl+1
+    windower.send_command('unbind !%7;')-- Alt+1
+
+    windower.send_command('unbind %8;')-- 1
+    windower.send_command('unbind ~%8;')-- Shift+1
+    windower.send_command('unbind ^%8;')-- Ctrl+1
+    windower.send_command('unbind !%8;')-- Alt+1
+
+    windower.send_command('unbind %9;')-- 1
+    windower.send_command('unbind ~%9;')-- Shift+1
+    windower.send_command('unbind ^%9;')-- Ctrl+1
+    windower.send_command('unbind !%9;')-- Alt+1
+
+    windower.send_command('unbind %0;')-- 1
+    windower.send_command('unbind ~%0;')-- Shift+1
+    windower.send_command('unbind ^%0;')-- Ctrl+1
+    windower.send_command('unbind !%0;')-- Alt+1
+end)
 
 -- User settings
 local defaults = require('defaults')
@@ -61,6 +165,9 @@ local xivhotbar = require('variables')
 -----------------------------
 -- Main
 -----------------------------
+
+local current_hotbar = -1
+local current_action = -1
 
 -- initialize addon
 function initialize()
@@ -84,14 +191,23 @@ function trigger_action(slot)
 end
 
 -- toggle between field and battle hotbars
-function toggle_environment()
-    player:toggle_environment()
+function set_environment(env)
+    player:set_environment(env)
 
     ui:load_player_hotbar(player.hotbar, player.vitals, player.hotbar_settings.active_environment)
 end
 
+function toggle_environment()
+    if player.hotbar_settings.active_environment == "field" then
+        set_environment("battle")
+    else
+        set_environment("field")
+    end
+end
+
 -- set battle environment
 function set_battle_environment(in_battle)
+    xivhotbar.in_battle = in_battle
     player:set_battle_environment(in_battle)
     ui:load_player_hotbar(player.hotbar, player.vitals, player.hotbar_settings.active_environment)
 end
@@ -114,26 +230,33 @@ end
 -- command to set an action in a hotbar
 function set_action_command(args)
     if not args[5] then
-        print('XIVHOTBAR: Invalid arguments: set <mode> <hotbar> <slot> <action_type> <action> <target (optional)> <alias (optional)> <icon (optional)>')
+        print('XIVHOTBAR: Invalid arguments: set <mode> <hotbar> <slot> <action_type> <action> <target (optional)> <alias (optional)> <icon (optional)> <next_environment (optional)>')
         return
     end
 
     local environment = args[1]:lower()
-    local hotbar = tonumber(args[2]) or 0
+    local hotbar = tonumber(args[2])
+    local done = false
+    if hotbar ~= nil then
+        done = true
+    end
+    if not done then
+        hotbar = args[2]
+        done = #hotbar > 0
+    end
+    if not done then
+        hotbar = 0
+    end
     local slot = tonumber(args[3]) or 0
     local action_type = args[4]:lower()
     local action = args[5]
     local target = args[6] or nil
     local alias = args[7] or nil
     local icon = args[8] or nil
+    local next_environment = args[9] or nil
 
-    if environment ~= 'battle' and environment ~= 'field' and environment ~= 'b' and environment ~= 'f' then
-        print('XIVHOTBAR: Invalid mode. Available modes are "Battle" (b) and "Field" (f).')
-        return
-    end
-
-    if hotbar < 1 or hotbar > 3 then
-        print('XIVHOTBAR: Invalid hotbar. Please use a number between 1 and 3.')
+    if hotbar < 1 or hotbar > 4 then
+        print('XIVHOTBAR: Invalid hotbar. Please use a number between 1 and 4.')
         return
     end
 
@@ -144,7 +267,7 @@ function set_action_command(args)
 
     if target ~= nil then target = target:lower() end
 
-    local new_action = action_manager:build(action_type, action, target, alias, icon)
+    local new_action = action_manager:build(action_type, action, target, alias, icon, next_environment)
     player:add_action(new_action, environment, hotbar, slot)
     player:save_hotbar()
     reload_hotbar()
@@ -161,13 +284,8 @@ function delete_action_command(args)
     local hotbar = tonumber(args[2]) or 0
     local slot = tonumber(args[3]) or 0
 
-    if environment ~= 'battle' and environment ~= 'field' and environment ~= 'b' and environment ~= 'f' then
-        print('XIVHOTBAR: Invalid mode. Available modes are "Battle" (b) and "Field" (f).')
-        return
-    end
-
-    if hotbar < 1 or hotbar > 3 then
-        print('XIVHOTBAR: Invalid hotbar. Please use a number between 1 and 3.')
+    if hotbar < 1 or hotbar > 4 then
+        print('XIVHOTBAR: Invalid hotbar. Please use a number between 1 and 4.')
         return
     end
 
@@ -198,14 +316,8 @@ function copy_action_command(args, is_moving)
     local to_hotbar =  tonumber(args[5]) or 0
     local to_slot =  tonumber(args[6]) or 0
 
-    if (environment ~= 'battle' and environment ~= 'field' and environment ~= 'b' and environment ~= 'f') or
-            (to_environment ~= 'battle' and to_environment ~= 'field' and to_environment ~= 'b' and to_environment ~= 'f') then
-        print('XIVHOTBAR: Invalid mode. Available modes are "Battle" (b) and "Field" (f).')
-        return
-    end
-
-    if hotbar < 1 or hotbar > 3 or to_hotbar < 1 or to_hotbar > 3 then
-        print('XIVHOTBAR: Invalid hotbar. Please use a number between 1 and 3.')
+    if hotbar < 1 or hotbar > 4 or to_hotbar < 1 or to_hotbar > 4 then
+        print('XIVHOTBAR: Invalid hotbar. Please use a number between 1 and 4.')
         return
     end
 
@@ -231,13 +343,8 @@ function update_alias_command(args)
     local slot = tonumber(args[3]) or 0
     local alias = args[4]
 
-    if environment ~= 'battle' and environment ~= 'field' and environment ~= 'b' and environment ~= 'f' then
-        print('XIVHOTBAR: Invalid mode. Available modes are "Battle" (b) and "Field" (f).')
-        return
-    end
-
-    if hotbar < 1 or hotbar > 3 then
-        print('XIVHOTBAR: Invalid hotbar. Please use a number between 1 and 3.')
+    if hotbar < 1 or hotbar > 4 then
+        print('XIVHOTBAR: Invalid hotbar. Please use a number between 1 and 4.')
         return
     end
 
@@ -263,13 +370,8 @@ function update_icon_command(args)
     local slot = tonumber(args[3]) or 0
     local icon = args[4]
 
-    if environment ~= 'battle' and environment ~= 'field' and environment ~= 'b' and environment ~= 'f' then
-        print('XIVHOTBAR: Invalid mode. Available modes are "Battle" (b) and "Field" (f).')
-        return
-    end
-
-    if hotbar < 1 or hotbar > 3 then
-        print('XIVHOTBAR: Invalid hotbar. Please use a number between 1 and 3.')
+    if hotbar < 1 or hotbar > 4 then
+        print('XIVHOTBAR: Invalid hotbar. Please use a number between 1 and 4.')
         return
     end
 
@@ -279,6 +381,33 @@ function update_icon_command(args)
     end
 
     player:set_action_icon(environment, hotbar, slot, icon)
+    player:save_hotbar()
+    reload_hotbar()
+end
+
+-- command to update action icon
+function update_next_environment_command(args)
+    if not args[4] then
+        print('XIVHOTBAR: Invalid arguments: next_environment <mode> <hotbar> <slot> <next_environment>')
+        return
+    end
+
+    local environment = args[1]:lower()
+    local hotbar = tonumber(args[2]) or 0
+    local slot = tonumber(args[3]) or 0
+    local next_environment = args[4]
+
+    if hotbar < 1 or hotbar > 4 then
+        print('XIVHOTBAR: Invalid hotbar. Please use a number between 1 and 4.')
+        return
+    end
+
+    if slot < 1 or slot > 10 then
+        print('XIVHOTBAR: Invalid slot. Please use a number between 1 and 10.')
+        return
+    end
+
+    player:set_action_next_environment(environment, hotbar, slot, next_environment)
     player:save_hotbar()
     reload_hotbar()
 end
@@ -311,7 +440,30 @@ windower.register_event('addon command', function(command, ...)
 
     if command == 'reload' then
         return reload_hotbar()
-
+    elseif command == 'autobattle' or command == 'ab' then
+        if #args > 1 and args[1] == 'on' then
+            theme_options.auto_battle_environment = true
+        elseif #args > 1 and args[1] == 'off' then
+            theme_options.auto_battle_environment = false
+        else
+            theme_options.auto_battle_environment = not theme_options.auto_battle_environment
+        end
+        settings.Hotbar.AutoBattleEnvironment = theme_options.auto_battle_environment
+        config.save(settings)
+    elseif command == 'execute' then
+        local index = 1
+        if #args > 3 then
+            local env = args[index]
+            set_environment(env)
+            index = index + 1
+        end
+        local hb = tonumber(args[index])
+        change_active_hotbar(hb)
+        index = index + 1
+        local action = tonumber(args[index])
+        trigger_action(action)
+    elseif command == 'environment' then
+        set_environment(args[1])
     elseif command == 'set' then
         set_action_command(args)
     elseif command == 'del' or command == 'delete' then
@@ -324,11 +476,13 @@ windower.register_event('addon command', function(command, ...)
         update_icon_command(args)
     elseif command == 'al' or command == 'alias' then
         update_alias_command(args)
+    elseif command == 'ne' or command == 'next_environment' then
+        update_next_environment_command(args)
     end
 end)
 
 -- ON KEY
-windower.register_event('keyboard', function(dik, flags, blocked)
+windower.register_event('keyboard', function(key, pressed, flags, blocked)
     if xivhotbar.ready == false or windower.ffxi.get_info().chat_open then
         return
     end
@@ -337,42 +491,48 @@ windower.register_event('keyboard', function(dik, flags, blocked)
         return
     end
 
-    -- activate third hotbar
-    if dik == keyboard.ctrl and flags == true and xivhotbar.pressing_combo_key_2 == false then
-        xivhotbar.pressing_combo_key_2 = true
-        change_active_hotbar(3)
-    end
-
-    if dik == keyboard.ctrl and flags == false and xivhotbar.pressing_combo_key_2 == true then
-        xivhotbar.pressing_combo_key_2 = false
-        change_active_hotbar(1)
-    end
-
-    -- activate second hotbar
-    if dik == keyboard.shift and flags == true and xivhotbar.pressing_combo_key_1 == false then
-        xivhotbar.pressing_combo_key_1 = true
-        change_active_hotbar(2)
-    end
-
-    if dik == keyboard.shift and flags == false and xivhotbar.pressing_combo_key_1 == true then
-        xivhotbar.pressing_combo_key_1 = false
-        change_active_hotbar(1)
-    end
-
-    if dik == theme_options.controls_battle_mode and flags == true then
+    if key == theme_options.controls_battle_mode and pressed == true then
         toggle_environment()
     end
+end)
 
-    if dik == keyboard.key_1 and flags == true then trigger_action(1) end
-    if dik == keyboard.key_2 and flags == true then trigger_action(2) end
-    if dik == keyboard.key_3 and flags == true then trigger_action(3) end
-    if dik == keyboard.key_4 and flags == true then trigger_action(4) end
-    if dik == keyboard.key_5 and flags == true then trigger_action(5) end
-    if dik == keyboard.key_6 and flags == true then trigger_action(6) end
-    if dik == keyboard.key_7 and flags == true then trigger_action(7) end
-    if dik == keyboard.key_8 and flags == true then trigger_action(8) end
-    if dik == keyboard.key_9 and flags == true then trigger_action(9) end
-    if dik == keyboard.key_0 and flags == true then trigger_action(0) end
+-- ON MOUSE
+windower.register_event('mouse', function(type, x, y, delta, blocked)
+    if blocked then
+        return false
+    end
+
+    if xivhotbar.hide_hotbars then
+        return false
+    end
+
+    if type == 1 then -- Mouse left click
+        local hotbar, action = ui:hovered(x, y)
+        if(action ~= 0) then
+            current_hotbar = hotbar
+            current_action = action
+            return true
+        end
+    elseif type == 2 then -- Mouse left release
+        if(current_action ~= -1) then
+            local hotbar, action = ui:hovered(x, y)
+            if(action ~= 0) then
+                if(hotbar == current_hotbar and action == current_action) then
+                    player.hotbar_settings.active_hotbar = hotbar
+                    trigger_action(action % 10)
+                end
+            end
+            current_hotbar = -1
+            current_action = -1
+            return true
+        end
+    elseif type == 0 then -- Mouse move
+        if(current_action ~= -1) then
+            return true
+        end
+    end
+
+    return false
 end)
 
 -- ON PRERENDER
@@ -413,13 +573,13 @@ windower.register_event('status change', function(new_status_id)
         ui:show(player.hotbar, player.hotbar_settings.active_environment)
     end
 
-    -- alternate environment on battle
-    if xivhotbar.in_battle == false and (new_status_id == 1 or new_status_id == 3) then
-        xivhotbar.in_battle = true
-        set_battle_environment(true)
-    elseif xivhotbar.in_battle and new_status_id ~= 1 and new_status_id ~= 3 then
-        xivhotbar.in_battle = false
-        set_battle_environment(false)
+    if xivhotbar.auto_battle_environment then
+        -- alternate environment on battle
+        if xivhotbar.in_battle == false and (new_status_id == 1 or new_status_id == 3) then
+            set_battle_environment(true)
+        elseif xivhotbar.in_battle and new_status_id ~= 1 and new_status_id ~= 3 then
+            set_battle_environment(false)
+        end
     end
 end)
 

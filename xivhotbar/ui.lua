@@ -208,7 +208,9 @@ function ui:load(theme_options)
             local key = i
             if i == 10 then key = 0 end
 
-            if h == 3 then
+            if h == 4 then
+                self.hotbars[h].slot_key[i]:text('a' .. key)
+            elseif h == 3 then
                 self.hotbars[h].slot_key[i]:text('c' .. key)
             elseif h == 2 then
                 self.hotbars[h].slot_key[i]:text('s' .. key)
@@ -231,7 +233,7 @@ end
 function ui:setup_metrics(theme_options)
     self.hotbar_width = (400 + theme_options.slot_spacing * 9)
     self.pos_x = (windower.get_windower_settings().x_res / 2) - (self.hotbar_width / 2) + theme_options.offset_x
-    self.pos_y = (windower.get_windower_settings().y_res - 120) + theme_options.offset_y
+    self.pos_y = (windower.get_windower_settings().y_res - 400) + theme_options.offset_y
 
     self.slot_spacing = theme_options.slot_spacing
 
@@ -636,6 +638,28 @@ function ui:show_feedback()
         self.feedback.current_opacity = self.feedback.max_opacity
         self.feedback.is_active= false
     end
+end
+
+-- Returns true if the coordinates are over a button
+function ui:hovered(x, y)
+
+    for h=1,#self.hotbars,1 do
+        for i=1,10,1 do
+            local pos_x = self:get_slot_x(h, i)
+            local pos_y = self:get_slot_y(h, i)
+            local off_x = 40
+            local off_y = 40
+
+            if (pos_x <= x and x <= pos_x + off_x
+                or pos_x >= x and x >= pos_x + off_x)
+            and (pos_y <= y and y <= pos_y + off_y
+                or pos_y >= y and y >= pos_y + off_y) then
+                return h, i
+            end
+        end
+    end
+
+    return 0, 0
 end
 
 return ui

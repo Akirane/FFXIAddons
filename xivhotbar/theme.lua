@@ -31,7 +31,7 @@ local theme = {}
 theme.apply = function (settings)
     local options = {}
 
-    options.hotbar_number = 3
+    options.hotbar_number = 4
     options.hide_empty_slots = settings.Hotbar.HideEmptySlots
     options.hide_action_names = settings.Hotbar.HideActionName
     options.hide_action_cost = settings.Hotbar.HideActionCost
@@ -39,6 +39,7 @@ theme.apply = function (settings)
     options.hide_recast_animation = settings.Hotbar.HideRecastAnimation
     options.hide_recast_text = settings.Hotbar.HideRecastText
     options.hide_battle_notice = settings.Hotbar.HideBattleNotice
+    options.auto_battle_environment = settings.Hotbar.AutoBattleEnvironment
 
     options.battle_notice_theme = settings.Theme.BattleNotice
     options.slot_theme = settings.Theme.Slot

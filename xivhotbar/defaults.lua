@@ -37,6 +37,7 @@ defaults.Hotbar.HideActionElement = true
 defaults.Hotbar.HideRecastAnimation = false
 defaults.Hotbar.HideRecastText = false
 defaults.Hotbar.HideBattleNotice = false
+defaults.Hotbar.AutoBattleEnvironment = true
 
 defaults.Controls = {}
 defaults.Controls.ToggleBattleMode = 43
